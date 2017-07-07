@@ -1,0 +1,111 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LeveGen.GUI"
+             mc:Ignorable="d" 
+              Background="white"
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Start" Margin="5" Padding="15,0,15,0" Command="{Binding Start}" />
+            <Button Content="Save" Margin="5" Padding="15,0,15,0" Command="{Binding Save}" ToolTip="Saves the profile if you want to use it later" />
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Button Content="Add" Command="{Binding Add}" Margin="5" />
+                    <Button Content="Remove" Command="{Binding Remove}" Margin="5" />
+                    <Button Content="Clear"  Command="{Binding Clear}" Margin="5" />
+                </StackPanel>
+                <ListView Height="240" Grid.Row="1" SelectedIndex="{Binding CurrentOrderIndex}" ItemsSource="{Binding CurrentOrder}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListView>
+                <CheckBox Grid.Row="2" Margin="5" Content="Continue on Level Up" ToolTip="Move on to the next leve when you level up. This is to maximize EXP" IsChecked="{Binding ContinueOnLevel}" />
+            </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <ToggleButton ToolTip="Carpenter" Margin="5,0" IsChecked="{Binding CRP, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/carpenter.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Blacksmith" Margin="5,0" IsChecked="{Binding BSM, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/blacksmith.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Armorer" Margin="5,0" IsChecked="{Binding ARM, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/armorer.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Goldsmith" Margin="5,0" IsChecked="{Binding GSM, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/goldsmith.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Leatherworker" Margin="5,0" IsChecked="{Binding LTW, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/leatherworker.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Weaver" Margin="5,0" IsChecked="{Binding WVR, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/weaver.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Alchemist" Margin="5,0" IsChecked="{Binding ALC, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/alchemist.png" Width="15" />
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Culinarian" Margin="5,0" IsChecked="{Binding CUL, Mode=TwoWay}">
+                        <Image Source="http://xivdb.com/img/classes/set1/culinarian.png" Width="15" />
+                    </ToggleButton>
+                    <Label Content="Search:" />
+                    <TextBox Width="122" Text="{Binding Search}" />
+                </StackPanel>
+
+                <DataGrid AutoGenerateColumns="False" Grid.Row="1" ItemsSource="{Binding Leves}" SelectedIndex="{Binding SelectedRow}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Add}"></MouseBinding>
+                    </DataGrid.InputBindings>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Level"
+                                Width="auto"
+                                Binding="{Binding Level}" />
+                        <DataGridTextColumn
+                            Header="Class"
+                            Width="auto"
+                            Binding="{Binding Classes}" />
+                        <DataGridTextColumn
+                                Header="Leve Name"
+                                Width="auto"
+                                Binding="{Binding Name}" />
+                            <DataGridTextColumn
+                                Header="Item(s)"
+                                Width="auto"
+                                Binding="{Binding ItemName}" />
+                            <DataGridTextColumn
+                                Header="# of Item"
+                                Width="auto"
+                                Binding="{Binding NumItems}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                
+            </Grid>
+            
+        </Grid>
+    </Grid>
+</UserControl>
