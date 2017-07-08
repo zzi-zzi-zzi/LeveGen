@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Windows.Data;
 using System.Windows.Input;
 using Buddy.Overlay.Commands;
 using Clio.Utilities;
@@ -29,13 +30,18 @@ namespace LeveGen.Models
             CurrentOrder = new ObservableCollection<Leve>();
             Leves = new ObservableCollection<Leve>(_database.Leves);
 
+            FilteredLeves = CollectionViewSource.GetDefaultView(Leves);
+            FilteredLeves.Filter = i => Filter((Leve)i);
+
             PropertyChanged += (obj, sender) =>
             {
                 if (sender.PropertyName == "Search")
                 {
-                    Leves = new ObservableCollection<Leve>(_database.Leves.Where(i => (i.Name.Contains(Search) || i.ItemName.Contains(Search)) && validateToggle(i)));
+                    FilteredLeves.Refresh();
+                    OnPropertyChanged("FilteredLeves");
                 }
             };
+            ContinueOnLevel = true;
         }
 
         #region Commands
@@ -51,13 +57,16 @@ namespace LeveGen.Models
                 {
                     if (TreeRoot.IsRunning)
                     {
-                        await TreeRoot.StopGently("Switching to LeveGen");
+                        await TreeRoot.StopGently("Switching to Order bot for LeveGen");
                     }
                     if (BotManager.Current.EnglishName != "Order Bot")
                     {
                         BotManager.SetCurrent(BotManager.Bots.First(i => i.EnglishName == "Order Bot"));
                     }
-                    var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Profiles", "LeveGen", "LastRun.xml");
+                    var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Profiles", "LeveGen");
+                    if (!Directory.Exists(dir))
+                        Directory.CreateDirectory(dir);
+                    var file = Path.Combine(dir, "LastRun.xml");
                     try
                     {
                         if (File.Exists(file))
@@ -71,7 +80,7 @@ namespace LeveGen.Models
 
                     using (var stream = File.OpenWrite(file))
                     {
-                        LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel ?? false, stream);
+                        LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, stream);
                     }
 
                     try
@@ -106,7 +115,7 @@ namespace LeveGen.Models
                     {
                         using (var savestrem = sr.OpenFile())
                         {
-                            LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel ?? false, savestrem);
+                            LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, savestrem);
                         }
                     }
 
@@ -124,7 +133,7 @@ namespace LeveGen.Models
             {
                 return new RelayCommand(s =>
                 {
-                    CurrentOrder.Add(Leves[SelectedRow]);
+                    CurrentOrder.Add(SelectedRow);
                 });
             }
         }
@@ -172,6 +181,18 @@ namespace LeveGen.Models
             }
         }
 
+        public ICollectionView FilteredLeves { get; set; }
+     
+
+        private bool Filter(Leve i)
+        {
+            if (i?.Name == null || i.ItemName == null)
+                return true;
+            if(Search == null)
+                return validateToggle(i);
+            return (i.Name.Contains(Search) || i.ItemName.Contains(Search)) && validateToggle(i);
+
+        }
         private ObservableCollection<Leve> _CurrentOrder = new ObservableCollection<Leve>();
         public ObservableCollection<Leve> CurrentOrder
         {
@@ -196,8 +217,8 @@ namespace LeveGen.Models
         }
 
 
-        private int _selected;
-        public int SelectedRow
+        private Leve _selected;
+        public Leve SelectedRow
         {
             get { return _selected; }
             set
@@ -218,9 +239,9 @@ namespace LeveGen.Models
             }
         }
 
-        private bool? _ContinueOnLevel;
+        private bool _ContinueOnLevel;
 
-        public bool? ContinueOnLevel
+        public bool ContinueOnLevel
         {
             get { return _ContinueOnLevel; }
             set

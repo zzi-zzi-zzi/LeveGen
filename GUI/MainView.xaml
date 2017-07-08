@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LeveGen.GUI"
              mc:Ignorable="d" 
               Background="white"
              d:DesignHeight="300" d:DesignWidth="600">
@@ -76,7 +75,12 @@
                     <TextBox Width="122" Text="{Binding Search}" />
                 </StackPanel>
 
-                <DataGrid AutoGenerateColumns="False" Grid.Row="1" ItemsSource="{Binding Leves}" SelectedIndex="{Binding SelectedRow}">
+                <DataGrid AutoGenerateColumns="False" Grid.Row="1" ItemsSource="{Binding FilteredLeves}" IsReadOnly="True"
+                          CanUserReorderColumns="False"
+                          CanUserResizeColumns="False"
+                          SelectionMode="Single"
+                          FontSize="10"
+                          SelectedItem="{Binding SelectedRow}">
                     <DataGrid.InputBindings>
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Add}"></MouseBinding>
                     </DataGrid.InputBindings>

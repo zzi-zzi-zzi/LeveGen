@@ -81,7 +81,7 @@ namespace LeveGen
                 lock (ContentLock)
                 {
                     _windowContent = WPF.LoadWindowContent(Path.Combine(uiPath, "MainView.xaml"));
-                    LoadResourceForWindow(Path.Combine(uiPath, "Dictionary.xaml"), _windowContent);
+                    //LoadResourceForWindow(Path.Combine(uiPath, "Dictionary.xaml"), _windowContent);
                     return _windowContent;
                 }
             }
