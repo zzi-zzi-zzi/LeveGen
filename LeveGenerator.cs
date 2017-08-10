@@ -7,10 +7,10 @@ namespace LeveGen
 {
     public class LeveGenerator
     {
-        private static string Header = @"<?xml version=""1.0"" encoding=""utf-8""?>"+
-            "<Profile>"+
-            "\t<Name>Levequests</Name>"+
-            "\t<KillRadius>50</KillRadius>"+
+        private static string Header = @"<?xml version=""1.0"" encoding=""utf-8""?>\n"+
+            "<Profile>\n"+
+            "\t<Name>Levequests</Name>\n"+
+            "\t<KillRadius>50</KillRadius>\n"+
             "\t<Order>";
 
         private static string Footer = "\t</Order>\n</Profile>";
@@ -45,7 +45,7 @@ namespace LeveGen
             var turninloc = $"{turnin.Pos.X},{turnin.Pos.Y},{turnin.Pos.Z}";
             var col = (continueOnLevel) ? " and Core.Player.ClassLevel &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
             return $@"
-        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and  Core.Player.ClassLevel &gt; {leve.Level}"">
+        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and  Core.Player.ClassLevel &gt;= {leve.Level}"">
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
             </If>
