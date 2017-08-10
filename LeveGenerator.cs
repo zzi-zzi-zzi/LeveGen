@@ -7,7 +7,7 @@ namespace LeveGen
 {
     public class LeveGenerator
     {
-        private static string Header = @"<?xml version=""1.0"" encoding=""utf-8""?>\n"+
+        private static string Header = @"<?xml version=""1.0"" encoding=""utf-8""?>"+ "\n" +
             "<Profile>\n"+
             "\t<Name>Levequests</Name>\n"+
             "\t<KillRadius>50</KillRadius>\n"+
