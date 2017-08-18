@@ -39,7 +39,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ListView>
-                <CheckBox Grid.Row="2" Margin="5" Content="Continue on Level Up" ToolTip="Move on to the next leve when you level up. This is to maximize EXP" IsChecked="{Binding ContinueOnLevel}" />
+                <CheckBox Grid.Row="2" Margin="5" Content="Optimize EXP" ToolTip="Only do the leve for it's level range. This is to maximize EXP" IsChecked="{Binding ContinueOnLevel}" />
             </Grid>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
