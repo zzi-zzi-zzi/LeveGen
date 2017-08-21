@@ -31,7 +31,7 @@
                     <Button Content="Remove" Command="{Binding Remove}" Margin="5" />
                     <Button Content="Clear"  Command="{Binding Clear}" Margin="5" />
                 </StackPanel>
-                <ListView Height="240" Grid.Row="1" SelectedIndex="{Binding CurrentOrderIndex}" ItemsSource="{Binding CurrentOrder}">
+                <ListView VerticalAlignment="Stretch" Grid.Row="1" SelectedIndex="{Binding CurrentOrderIndex}" ItemsSource="{Binding CurrentOrder}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <TextBlock
@@ -84,8 +84,8 @@
                     <DataGrid.InputBindings>
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Add}"></MouseBinding>
                     </DataGrid.InputBindings>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
                                 Header="Level"
                                 Width="auto"
                                 Binding="{Binding Level}" />
@@ -97,19 +97,19 @@
                                 Header="Leve Name"
                                 Width="auto"
                                 Binding="{Binding Name}" />
-                            <DataGridTextColumn
+                        <DataGridTextColumn
                                 Header="Item(s)"
                                 Width="auto"
                                 Binding="{Binding ItemName}" />
-                            <DataGridTextColumn
+                        <DataGridTextColumn
                                 Header="# of Item"
                                 Width="auto"
                                 Binding="{Binding NumItems}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                
+                    </DataGrid.Columns>
+                </DataGrid>
+
             </Grid>
-            
+
         </Grid>
     </Grid>
 </UserControl>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Clio.Utilities;
-using Newtonsoft.Json;
 
 namespace LeveGen.Models
 {

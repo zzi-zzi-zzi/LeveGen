@@ -7953,16 +7953,6 @@
       "LocationName": "Bentbranch Meadows"
     },
     {
-      "NpcId": 1000970,
-      "Pos": {
-        "X": -12.3446,
-        "Y": 39.9939,
-        "Z": -12.131
-      },
-      "MapId": 129,
-      "LocationName": "Limsa Lominsa"
-    },
-    {
       "NpcId": 1001787,
       "Pos": {
         "X": -62.1024,
@@ -8243,26 +8233,6 @@
       "LocationName": "Camp Dragonhead"
     },
     {
-      "NpcId": 1004349,
-      "Pos": {
-        "X": 445.0,
-        "Y": -4.48482,
-        "Z": -453.0
-      },
-      "MapId": 154,
-      "LocationName": "Syele"
-    },
-    {
-      "NpcId": 1004348,
-      "Pos": {
-        "X": 416.0,
-        "Y": -6.03864,
-        "Z": -444.4
-      },
-      "MapId": 154,
-      "LocationName": "Revenant's Toll"
-    },
-    {
       "NpcId": 1011208,
       "Pos": {
         "X": -53.523,
@@ -8301,6 +8271,36 @@
       },
       "MapId": 628,
       "LocationName": "Kugane"
+    },
+    {
+      "NpcId": 1000970,
+      "Pos": {
+        "X": -12.3446,
+        "Y": 39.9939,
+        "Z": -12.131
+      },
+      "MapId": 128,
+      "LocationName": "Limsa Lominsa Upper Decks"
+    },
+    {
+      "NpcId": 1004349,
+      "Pos": {
+        "X": 445.0,
+        "Y": -4.48482,
+        "Z": -453.0
+      },
+      "MapId": 156,
+      "LocationName": "Mor Dhona"
+    },
+    {
+      "NpcId": 1004348,
+      "Pos": {
+        "X": 416.0,
+        "Y": -6.03864,
+        "Z": -444.4
+      },
+      "MapId": 156,
+      "LocationName": "Mor Dhona"
     }
   ]
 }
