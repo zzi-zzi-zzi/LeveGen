@@ -62,5 +62,6 @@ namespace LeveGen
         private string formatFloat(float val)
         {
             return val.ToString("G",  CultureInfo.CurrentCulture);
+        }
     }
 }
