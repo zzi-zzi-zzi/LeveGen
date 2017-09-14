@@ -1,7 +1,8 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using LeveGen.Models;
+using System.Globalization;
 
 namespace LeveGen
 {
