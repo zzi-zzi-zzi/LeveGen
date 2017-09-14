@@ -62,7 +62,8 @@ namespace LeveGen
         
         private static string formatFloat(float val)
         {
-            return val.ToString("G",  CultureInfo.CurrentCulture);
+            //force a us culture on the rest of the world because we don't need commas where we expect decimals...
+            return val.ToString("G", CultureInfo.CreateSpecificCulture("en-US"));
         }
     }
 }
