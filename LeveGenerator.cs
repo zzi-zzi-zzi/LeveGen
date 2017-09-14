@@ -40,9 +40,9 @@ namespace LeveGen
         private static string WriteOrder(LeveDatabase db, Leve leve, bool continueOnLevel)
         {
             var pickup = db.Npcs.First(i => i.NpcId == leve.PickUpNpc);
-            var pickuploc = $"{pickup.Pos.X},{pickup.Pos.Y},{pickup.Pos.Z}";
+            var pickuploc = $"{formatFloat(pickup.Pos.X)},{formatFloat(pickup.Pos.Y)},{formatFloat(pickup.Pos.Z)}";
             var turnin = db.Npcs.First(i => i.NpcId == leve.TurnInNpc);
-            var turninloc = $"{turnin.Pos.X},{turnin.Pos.Y},{turnin.Pos.Z}";
+            var turninloc = $"{formatFloat(turnin.Pos.X)},{formatFloat(turnin.Pos.Y)},{formatFloat(turnin.Pos.Z)}";
             var col = (continueOnLevel) ? " and Core.Player.ClassLevel &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
             return $@"
         <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and  Core.Player.ClassLevel &gt;= {leve.Level}"">
@@ -58,5 +58,9 @@ namespace LeveGen
                 ;
 
         }
+        
+        private string formatFloat(float val)
+        {
+            return val.ToString("G",  CultureInfo.CurrentCulture);
     }
 }
