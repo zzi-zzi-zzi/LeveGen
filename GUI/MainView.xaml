@@ -72,7 +72,7 @@
                         <Image Source="http://xivdb.com/img/classes/set1/culinarian.png" Width="15" />
                     </ToggleButton>
                     <Label Content="Search:" />
-                    <TextBox Width="122" Text="{Binding Search}" />
+                    <TextBox Width="122" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <DataGrid AutoGenerateColumns="False" Grid.Row="1" ItemsSource="{Binding FilteredLeves}" IsReadOnly="True"

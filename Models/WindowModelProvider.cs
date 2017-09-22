@@ -182,7 +182,12 @@ namespace LeveGen.Models
         }
 
         public ICollectionView FilteredLeves { get; set; }
-     
+
+
+        private bool FilterMatches(string term)
+        {
+            return (term.IndexOf(Search, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
 
         private bool Filter(Leve i)
         {
@@ -190,7 +195,7 @@ namespace LeveGen.Models
                 return true;
             if(Search == null)
                 return validateToggle(i);
-            return (i.Name.Contains(Search) || i.ItemName.Contains(Search)) && validateToggle(i);
+            return (FilterMatches(i.Name) || FilterMatches(i.ItemName)) && validateToggle(i);
 
         }
         private ObservableCollection<Leve> _CurrentOrder = new ObservableCollection<Leve>();
