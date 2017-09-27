@@ -46,15 +46,15 @@ namespace LeveGen
             var turninloc = $"{formatFloat(turnin.Pos.X)},{formatFloat(turnin.Pos.Y)},{formatFloat(turnin.Pos.Z)}";
             var col = (continueOnLevel) ? " and Core.Player.ClassLevel &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
             return $@"
-        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and  Core.Player.ClassLevel &gt;= {leve.Level}"">
+        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Player.ClassLevel &gt;= {leve.Level}"">
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
             </If>
-            <ExPickupGuildLeve leveIds=""{leve.LeveId}"" leveType=""Tradecraft"" npcId=""{pickup.NpcId}"" npcLocation=""{pickuploc}"" />
+            <ExPickupGuildLeve LeveIds=""{leve.LeveId}"" LeveType=""Tradecraft"" NpcId=""{pickup.NpcId}"" NpcLocation=""{pickuploc}"" Timeout=""5"" />
             <If Condition=""not IsOnMap({turnin.MapId})"">
                 <GetTo ZoneId=""{turnin.MapId}"" XYZ=""{turninloc}"" />
             </If>
-            <ExTurnInGuildLeve npcId=""{turnin.NpcId}"" npcLocation=""{turninloc}"" />
+            <ExTurnInGuildLeve NpcId=""{turnin.NpcId}"" NpcLocation=""{turninloc}"" />
         </While>"
                 ;
 
