@@ -20,7 +20,8 @@ namespace LeveGen.Models
         public int NumItems { get; set; }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
-
+        public int Repeats { get; set; }
+        public int ExpReward { get; set; }
     }
 
     public class LeveNpc

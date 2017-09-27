@@ -23,11 +23,16 @@ namespace LeveGen
         /// <param name="currentOrder"></param>
         /// <param name="ContinueOnLevel"></param>
         /// <param name="savestrem"></param>
-        public static void Generate(LeveDatabase db, ObservableCollection<Leve> currentOrder, bool ContinueOnLevel, Stream savestrem)
+        public static void Generate(LeveDatabase db, ObservableCollection<Leve> currentOrder, bool ContinueOnLevel, bool GenerateLisbeth, Stream savestrem)
         {
             using (var sw = new StreamWriter(savestrem))
             {
                 sw.WriteLine(Header);
+
+                if (GenerateLisbeth)
+                {
+                    sw.WriteLine(WriteLisbeth(db, currentOrder));
+                }
 
                 foreach (var x in currentOrder.OrderBy(i => i.Level))
                 {
@@ -36,6 +41,37 @@ namespace LeveGen
 
                 sw.WriteLine(Footer);
             }
+        }
+
+        private static string WriteLisbeth(LeveDatabase db, ObservableCollection<Leve> currentOrder) {
+            var lisbethOrder = $@"
+        <Lisbeth Json=""[";
+
+            foreach (var leve in currentOrder.OrderBy(i => i.Level))
+            {
+                var amount = (leve.Repeats > 0) ? leve.NumItems * (leve.Repeats + 1) : leve.NumItems;
+
+                lisbethOrder += $@"
+            {{'Item': {leve.ItemId},
+               'Group': 0,
+               'Amount': {amount},
+               'Collectable': false,
+               'QuickSynth': false,
+               'SuborderQuickSynth': false,
+               'Hq': false,
+               'Food': 0,
+               'Primary': true,
+               'Type': '{leve.Classes}',
+               'Enabled': true,
+               'Manual': 0,
+               'Medicine': 0}},";
+            }
+
+            lisbethOrder += $@"
+            ]""
+        />";
+
+            return lisbethOrder;
         }
 
         private static string WriteOrder(LeveDatabase db, Leve leve, bool continueOnLevel)
