@@ -79,7 +79,7 @@ namespace LeveGen
             var turninloc = $"{formatFloat(turnin.Pos.X)},{formatFloat(turnin.Pos.Y)},{formatFloat(turnin.Pos.Z)}";
             ClassJobType leveClass;
             ClassJobType.TryParse(leve.Classes, out leveClass);
-            var col = (continueOnLevel) ? " and Core.Me.Levels[ClassJobType.{leveClass}] &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
+            var col = (continueOnLevel) ? $" and Core.Me.Levels[ClassJobType.{leveClass}] &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
             // Default to 5 leves (5 items for single turnins, 15 items for triple turnins)
             int numLeves = 5;
             // ExpReward * 2.0 is assuming all of the items are HQ'd and .5 for the exp crafting suborders.
@@ -87,7 +87,7 @@ namespace LeveGen
 
             var output = "";
             var outputTurnin = $@"
-        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and  Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level}"">
+        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level}"">
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
             </If>
