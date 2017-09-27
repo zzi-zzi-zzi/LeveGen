@@ -1,9 +1,9 @@
 ﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
               Background="white"
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
@@ -41,7 +41,7 @@
                     </ItemsControl.ItemTemplate>
                 </ListView>
                 <CheckBox Grid.Row="2" Margin="5" Content="Optimize EXP" ToolTip="Only do the leve for it's level range. This is to maximize EXP" IsChecked="{Binding ContinueOnLevel}" />
-                <CheckBox Grid.Row="3" Margin="5" Content="Generate Lisbeth Orders" ToolTip="Create Lisbeth orders for the selected leves. Add duplicate leves to the list to repeat orders." IsChecked="{Binding GenerateLisbeth}" />
+                <CheckBox Grid.Row="3" Margin="5" Content="Generate Lisbeth Orders" ToolTip="Create Lisbeth orders for the selected leves. If Optimize EXP is checked, it will create orders based on how many HQ items are required to get to the next tier of Leves, otherwise it will create orders to complete 5 leves." IsChecked="{Binding GenerateLisbeth}" />
             </Grid>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>

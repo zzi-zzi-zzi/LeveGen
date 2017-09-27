@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Clio.Utilities;
 
 namespace LeveGen.Models
@@ -7,6 +8,7 @@ namespace LeveGen.Models
     {
         public List<Leve> Leves;
         public List<LeveNpc> Npcs;
+        public Dictionary<string, int> ExperienceRequired;
     }
 
     public class Leve
