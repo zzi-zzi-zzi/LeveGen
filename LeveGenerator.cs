@@ -113,12 +113,14 @@ namespace LeveGen
                     numLeves = (int)(requiredExp / (leve.ExpReward * rewardModifier));
 
                     output += $@"
-        <While condition=""Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level} and Core.Me.Levels[ClassJobType.{leveClass}] &lt; {nextLeveLevel}"">";
+        <While Condition=""Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level} and Core.Me.Levels[ClassJobType.{leveClass}] &lt; {nextLeveLevel}"">";
                 }
-
-                output += WriteLisbeth(db, leve, numLeves);
-                output += outputTurnin;
-
+                output += $@"
+        <If Condition=""ItemCount({leve.ItemId}) &lt; {leve.NumItems}"">
+            {WriteLisbeth(db, leve, numLeves)}
+        </If>
+        {outputTurnin}
+        ";
                 if (continueOnLevel) {
                     output += $@"
         </While>";
