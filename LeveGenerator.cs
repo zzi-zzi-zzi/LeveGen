@@ -91,7 +91,7 @@ namespace LeveGen
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
             </If>
-            <ExPickupGuildLeve leveIds=""{leve.LeveId}"" leveType=""Tradecraft"" npcId=""{pickup.NpcId}"" npcLocation=""{pickuploc}"" />
+            <ExPickupGuildLeve leveIds=""{leve.LeveId}"" leveType=""Tradecraft"" npcId=""{pickup.NpcId}"" npcLocation=""{pickuploc}"" Timeout=""5"" />
             <If Condition=""not IsOnMap({turnin.MapId})"">
                 <GetTo ZoneId=""{turnin.MapId}"" XYZ=""{turninloc}"" />
             </If>
