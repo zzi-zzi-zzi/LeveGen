@@ -46,6 +46,7 @@ namespace LeveGen
             var turninloc = $"{formatFloat(turnin.Pos.X)},{formatFloat(turnin.Pos.Y)},{formatFloat(turnin.Pos.Z)}";
             var col = (continueOnLevel) ? " and Core.Player.ClassLevel &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
             return $@"
+        <LgSwitchGearset Job=""{leve.Classes}"" />
         <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Player.ClassLevel &gt;= {leve.Level}"">
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
