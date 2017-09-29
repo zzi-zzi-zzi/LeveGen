@@ -84,7 +84,7 @@
             {
                 Log("Switching to gearset {0} ({1})... (Attempt {2} of {3})", _targetGearset.Index, _targetGearset.Class, _tries, 5);
                 _targetGearset.Activate();
-                await Coroutine.Wait(5000, () => HasCorrectGearset);
+                await Coroutine.Sleep(1000);
             }
 
             return _isDone = true;
