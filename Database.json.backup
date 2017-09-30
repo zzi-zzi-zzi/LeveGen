@@ -8279,8 +8279,8 @@
         "Y": 39.9939,
         "Z": -12.131
       },
-      "MapId": 129,
-      "LocationName": "Limsa Lominsa"
+      "MapId": 128,
+      "LocationName": "Limsa Lominsa Upper Decks"
     },
     {
       "NpcId": 1004349,
@@ -8289,8 +8289,8 @@
         "Y": -4.48482,
         "Z": -453.0
       },
-      "MapId": 154,
-      "LocationName": "Syele"
+      "MapId": 156,
+      "LocationName": "Mor Dhona"
     },
     {
       "NpcId": 1004348,
@@ -8299,8 +8299,8 @@
         "Y": -6.03864,
         "Z": -444.4
       },
-      "MapId": 154,
-      "LocationName": "Revenant's Toll"
+      "MapId": 156,
+      "LocationName": "Mor Dhona"
     }
   ]
 }

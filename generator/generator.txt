@@ -40,49 +40,44 @@ namespace SaintCoinach.Cmd.Commands {
             _Realm = realm;
         }
 
-        public override async Task<bool> InvokeAsync(string paramList)
-        {
-            if (string.IsNullOrEmpty(paramList) || !File.Exists(paramList))
-            {
+        public override async Task<bool> InvokeAsync(string paramList) {
+            if (string.IsNullOrEmpty(paramList) || !File.Exists(paramList)) {
                 OutputInformation($"Please specify db location {paramList}");
                 return false;
             }
-            if(File.Exists($"{paramList}.backup"))
+            if (File.Exists($"{paramList}.backup"))
                 File.Delete($"{paramList}.backup");
             File.Copy(paramList, $"{paramList}.backup");
             var existing = JsonConvert.DeserializeObject<LeveDatabase>(File.ReadAllText(paramList));
 
             var items = _Realm.GameData.GetSheet<SaintCoinach.Xiv.CraftLeve>();
-            var levenpcs = _Realm.GameData.GetSheet < SaintCoinach.Xiv.Level>();
-            foreach (var ir in items)
-            {
+            var levenpcs = _Realm.GameData.GetSheet<SaintCoinach.Xiv.Level>();
+            foreach (var ir in items) {
                 var t = ir.Leve;
-                if (t.LeveAssignmentType.Key > 4 && t.LeveAssignmentType.Key < 13 && existing.Leves.All(i => i.LeveId != t.Key))
-                {
+                if (t.LeveAssignmentType.Key > 4 && t.LeveAssignmentType.Key < 13 && existing.Leves.All(i => i.LeveId != t.Key)) {
                     var item = ir.Items.First().Item;
-                    var next = new Leve
-                    {
+                    var next = new Leve {
                         Classes = t.LeveAssignmentType.Name,
                         ItemId = item.Key,
                         ItemName = item.Name,
+                        ExpReward = t.ExpReward,
+                        Repeats = ir.Repeats,
                         LeveId = t.Key,
-                        Level = t.CharacterLevel, //t.StartLevel.Map.TerritoryType.Key,
+                        Level = t.ClassJobLevel, //t.StartLevel.Map.TerritoryType.Key,
                         Name = t.Name,
                         NumItems = ir.Items.Sum(i => i.Count),
                         PickUpNpc = (t.ZonePlaceName.Key == 2404) ? 1018997 : 0,
                         TurnInNpc = t.LevemeteLevel.ObjectKey
                     };
-                    if(next.PickUpNpc == 0)
+                    if (next.PickUpNpc == 0)
                         continue;
-                    
+
                     existing.Leves.Add(next);
                     OutputInformation($"Added Leve # {next.LeveId} - {next.Name} - {next.Classes}");
-                    if (existing.Npcs.All(i => i.NpcId != next.TurnInNpc))
-                    {
+                    if (existing.Npcs.All(i => i.NpcId != next.TurnInNpc)) {
                         var x = levenpcs.First(i => i.ObjectKey == next.TurnInNpc);
 
-                        var nnpc = new LeveNpc
-                        {
+                        var nnpc = new LeveNpc {
                             LocationName = x.Map.PlaceName.Name,
                             MapId = x.Map.Key,
                             NpcId = next.TurnInNpc,
@@ -122,6 +117,8 @@ namespace SaintCoinach.Cmd.Commands {
             public string Name { get; set; }
             public string Classes { get; set; }
             public int Level { get; set; }
+            public int ExpReward { get; set; }
+            public int Repeats { get; set; }
             public int PickUpNpc { get; set; }
             public int TurnInNpc { get; set; }
             public int NumItems { get; set; }
