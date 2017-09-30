@@ -42,6 +42,7 @@ namespace LeveGen.Models
                 }
             };
             ContinueOnLevel = true;
+            GenerateLisbeth = false;
         }
 
         #region Commands
@@ -80,7 +81,7 @@ namespace LeveGen.Models
 
                     using (var stream = File.OpenWrite(file))
                     {
-                        LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, stream);
+                        LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, GenerateLisbeth, stream);
                     }
 
                     try
@@ -115,7 +116,7 @@ namespace LeveGen.Models
                     {
                         using (var savestrem = sr.OpenFile())
                         {
-                            LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, savestrem);
+                            LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, GenerateLisbeth, savestrem);
                         }
                     }
 
@@ -196,7 +197,6 @@ namespace LeveGen.Models
             if(Search == null)
                 return validateToggle(i);
             return (FilterMatches(i.Name) || FilterMatches(i.ItemName)) && validateToggle(i);
-
         }
         private ObservableCollection<Leve> _CurrentOrder = new ObservableCollection<Leve>();
         public ObservableCollection<Leve> CurrentOrder
@@ -252,6 +252,18 @@ namespace LeveGen.Models
             set
             {
                 _ContinueOnLevel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _GenerateLisbeth;
+
+        public bool GenerateLisbeth
+        {
+            get { return _GenerateLisbeth; }
+            set
+            {
+                _GenerateLisbeth = value;
                 OnPropertyChanged();
             }
         }
