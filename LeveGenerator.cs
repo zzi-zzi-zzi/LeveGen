@@ -77,7 +77,8 @@ namespace LeveGen
             var pickuploc = $"{formatFloat(pickup.Pos.X)},{formatFloat(pickup.Pos.Y)},{formatFloat(pickup.Pos.Z)}";
             var turnin = db.Npcs.First(i => i.NpcId == leve.TurnInNpc);
             var turninloc = $"{formatFloat(turnin.Pos.X)},{formatFloat(turnin.Pos.Y)},{formatFloat(turnin.Pos.Z)}";
-            ClassJobType leveClass;
+
+          ClassJobType leveClass;
             ClassJobType.TryParse(leve.Classes, out leveClass);
             var col = (continueOnLevel) ? $" and Core.Me.Levels[ClassJobType.{leveClass}] &lt; " + (leve.Level >=50 ? leve.Level + 2 : leve.Level + 5) : "";
             // Default to 5 leves (5 items for single turnins, 15 items for triple turnins)
@@ -87,6 +88,7 @@ namespace LeveGen
 
             var output = "";
             var outputTurnin = $@"
+            <LgSwitchGearset Job=""{leve.Classes}"" />
         <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level}"">
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
