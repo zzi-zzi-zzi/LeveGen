@@ -45,8 +45,8 @@ namespace LeveGen.Utils
             try
             {
                 var windowContent = LoadAndTransformXamlFile<UserControl>(xamlFilePath);
-                if (File.Exists(Path.Combine(Path.GetDirectoryName(xamlFilePath), "Dictionary.xaml")))
-                    LoadResourceForWindow(Path.Combine(Path.GetDirectoryName(xamlFilePath), "Dictionary.xaml"), windowContent);
+                //if (File.Exists(Path.Combine(Path.GetDirectoryName(xamlFilePath), "Dictionary.xaml")))
+                //    LoadResourceForWindow(Path.Combine(Path.GetDirectoryName(xamlFilePath), "Dictionary.xaml"), windowContent);
                 return windowContent;
             }
             catch (Exception arg)
@@ -59,14 +59,14 @@ namespace LeveGen.Utils
         /// loads our xaml files into a type
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="filePath"></param>
+        /// <param name="xamlText"></param>
         /// <returns></returns>
-        public static T LoadAndTransformXamlFile<T>(string filePath)
+        public static T LoadAndTransformXamlFile<T>(string xamlText)
         {
             T result;
             try
             {
-                var xamlText = File.ReadAllText(filePath);
+                //var xamlText = File.ReadAllText(filePath);
                 xamlText = Regex.Replace(xamlText, "xmlns:(.+?)=\"clr-namespace:([\\w\\d\\._]+?)\"",
                     "xmlns:$1=\"clr-namespace:$2;assembly=" + Assembly.GetCallingAssembly().GetName().Name + "\"",
                     RegexOptions.Compiled | RegexOptions.Singleline);

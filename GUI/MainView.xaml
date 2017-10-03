@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:L="clr-namespace:LeveGen.Localization"
              mc:Ignorable="d"
               Background="white"
              d:DesignHeight="300" d:DesignWidth="600">
@@ -12,8 +13,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Start" Margin="5" Padding="15,0,15,0" Command="{Binding Start}" />
-            <Button Content="Save" Margin="5" Padding="15,0,15,0" Command="{Binding Save}" ToolTip="Saves the profile if you want to use it later" />
+            <Button Content="{x:Static L:Localization.StartBtn}" Margin="5" Padding="15,0,15,0" Command="{Binding Start}" />
+            <Button Content="{x:Static L:Localization.SaveBtn}" Margin="5" Padding="15,0,15,0" Command="{Binding Save}" ToolTip="{x:Static L:Localization.SaveTooltip}" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -28,9 +29,9 @@
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Button Content="Add" Command="{Binding Add}" Margin="5" />
-                    <Button Content="Remove" Command="{Binding Remove}" Margin="5" />
-                    <Button Content="Clear"  Command="{Binding Clear}" Margin="5" />
+                    <Button Content="{x:Static L:Localization.AddBtn}" Command="{Binding Add}" Margin="5" />
+                    <Button Content="{x:Static L:Localization.RemoveBtn}" Command="{Binding Remove}" Margin="5" />
+                    <Button Content="{x:Static L:Localization.ClearBtn}"  Command="{Binding Clear}" Margin="5" />
                 </StackPanel>
                 <ListView VerticalAlignment="Stretch" Grid.Row="1" SelectedIndex="{Binding CurrentOrderIndex}" ItemsSource="{Binding CurrentOrder}">
                     <ItemsControl.ItemTemplate>
@@ -40,8 +41,8 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ListView>
-                <CheckBox Grid.Row="2" Margin="5" Content="Optimize EXP" ToolTip="Only do the leve for it's level range. This is to maximize EXP" IsChecked="{Binding ContinueOnLevel}" />
-                <CheckBox Grid.Row="3" Margin="5" Content="Generate Lisbeth Orders" ToolTip="Create Lisbeth orders for the selected leves. If Optimize EXP is checked, it will create orders based on how many HQ items are required to get to the next tier of Leves, otherwise it will create orders to complete 5 leves." IsChecked="{Binding GenerateLisbeth}" />
+                <CheckBox Grid.Row="2" Margin="5" Content="{x:Static L:Localization.OptimizeExp}" ToolTip="{x:Static L:Localization.OptimizeExpDesc}" IsChecked="{Binding ContinueOnLevel}" />
+                <CheckBox Grid.Row="3" Margin="5" Content="{x:Static L:Localization.MakeLizbeth}" ToolTip="{x:Static L:Localization.MakeLizbethDesc}" IsChecked="{Binding GenerateLisbeth}" />
             </Grid>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -49,31 +50,31 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <ToggleButton ToolTip="Carpenter" Margin="5,0" IsChecked="{Binding CRP, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.CRP}" Margin="5,0" IsChecked="{Binding CRP, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/carpenter.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Blacksmith" Margin="5,0" IsChecked="{Binding BSM, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.BSM}" Margin="5,0" IsChecked="{Binding BSM, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/blacksmith.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Armorer" Margin="5,0" IsChecked="{Binding ARM, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.ARM}" Margin="5,0" IsChecked="{Binding ARM, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/armorer.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Goldsmith" Margin="5,0" IsChecked="{Binding GSM, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.GSM}" Margin="5,0" IsChecked="{Binding GSM, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/goldsmith.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Leatherworker" Margin="5,0" IsChecked="{Binding LTW, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.LTW}" Margin="5,0" IsChecked="{Binding LTW, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/leatherworker.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Weaver" Margin="5,0" IsChecked="{Binding WVR, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.WVR}" Margin="5,0" IsChecked="{Binding WVR, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/weaver.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Alchemist" Margin="5,0" IsChecked="{Binding ALC, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.ALC}" Margin="5,0" IsChecked="{Binding ALC, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/alchemist.png" Width="15" />
                     </ToggleButton>
-                    <ToggleButton ToolTip="Culinarian" Margin="5,0" IsChecked="{Binding CUL, Mode=TwoWay}">
+                    <ToggleButton ToolTip="{x:Static L:Localization.CUL}" Margin="5,0" IsChecked="{Binding CUL, Mode=TwoWay}">
                         <Image Source="http://xivdb.com/img/classes/set1/culinarian.png" Width="15" />
                     </ToggleButton>
-                    <Label Content="Search:" />
+                    <Label Content="{x:Static L:Localization.Search}" />
                     <TextBox Width="122" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
@@ -88,31 +89,31 @@
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn
-                                Header="Level"
+                                Header="{x:Static L:Localization.Level}"
                                 Width="auto"
                                 Binding="{Binding Level}" />
                         <DataGridTextColumn
-                            Header="Class"
+                            Header="{x:Static L:Localization.Class}"
                             Width="auto"
                             Binding="{Binding Classes}" />
                         <DataGridTextColumn
-                                Header="Leve Name"
+                                Header="{x:Static L:Localization.LeveName}"
                                 Width="auto"
                                 Binding="{Binding Name}" />
                         <DataGridTextColumn
-                                Header="Item(s)"
+                                Header="{x:Static L:Localization.Items}"
                                 Width="auto"
                                 Binding="{Binding ItemName}" />
                         <DataGridTextColumn
-                                Header="# of Item"
+                                Header="{x:Static L:Localization.qtyItem}"
                                 Width="auto"
                                 Binding="{Binding NumItems}" />
                         <DataGridTextColumn
-                                Header="# of Repeats"
+                                Header="{x:Static L:Localization.NumRepeat}"
                                 Width="auto"
                                 Binding="{Binding Repeats}" />
                         <DataGridTextColumn
-                                Header="EXP Reward"
+                                Header="{x:Static L:Localization.ExpReward}"
                                 Width="auto"
                                 Binding="{Binding ExpReward}" />
                     </DataGrid.Columns>

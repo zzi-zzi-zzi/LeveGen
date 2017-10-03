@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ff14bot.AClasses;
 using ff14bot.Managers;
+using LeveGen.Localization;
 using LeveGen.Models;
+using LeveGen.Properties;
 using LeveGen.Utils;
 using Newtonsoft.Json;
 
@@ -30,7 +34,7 @@ namespace LeveGen
 #endif
 
         public override string Author => "ZZI";
-        public override Version Version => new Version(2,0,0);
+        public override Version Version => new Version(2,1,0);
         public override string Name => PluginName;
 
         public override bool WantButton => true;
@@ -40,14 +44,26 @@ namespace LeveGen
         public string uiPath = Path.Combine(PluginManager.PluginDirectory, "LeveGen", "GUI");
 
         private Window _window;
+        public override void OnInitialize()
+        {
+            LocalizationInitializer.Initalize();
+        }
 
         private LeveDatabase _database =
-            JsonConvert.DeserializeObject<LeveDatabase>(File.ReadAllText( Path.Combine(PluginManager.PluginDirectory, "LeveGen", "Database.json")) );
+            JsonConvert.DeserializeObject<LeveDatabase>(Resources.Database);
 
         public override void OnButtonPress()
         {
+            
             if (_window == null)
             {
+                //this if is Just in case, it helps force the correct culture into the xaml parser
+#if RB_CN
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN");
+                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("zh-CN");
+                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("zh-CN");
+#endif
                 _window = new LeveWindow
                 {
                     DataContext = new WindowModelProvider(_database),
@@ -58,6 +74,10 @@ namespace LeveGen
                     Height = 600,
             };
                 
+                _window.Loaded += (e, a) =>
+                {
+                    
+                };
                 _window.Closed += (e, a) =>
                 {
                     _window = null;
@@ -80,7 +100,7 @@ namespace LeveGen
             {
                 lock (ContentLock)
                 {
-                    _windowContent = WPF.LoadWindowContent(Path.Combine(uiPath, "MainView.xaml"));
+                    _windowContent = WPF.LoadWindowContent(Resources.MainView);
                     //LoadResourceForWindow(Path.Combine(uiPath, "Dictionary.xaml"), _windowContent);
                     return _windowContent;
                 }
