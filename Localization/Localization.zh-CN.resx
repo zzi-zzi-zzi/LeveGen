@@ -175,7 +175,7 @@
     <value>只做现在等级范围内的任务，最大化经验</value>
   </data>
   <data name="qtyItem" xml:space="preserve">
-    <value>物品名称</value>
+    <value>需要物品个数</value>
   </data>
   <data name="RemoveBtn" xml:space="preserve">
     <value>移出</value>
