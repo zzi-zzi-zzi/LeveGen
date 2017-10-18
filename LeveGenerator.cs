@@ -87,6 +87,12 @@ namespace LeveGen
             var rewardModifier = 2.5;
 
             var output = "";
+#if RB_CN
+            var LeveTag = "YesText=\"继续交货\""; //
+#else
+            var LeveTag = @"";
+#endif
+            
             var outputTurnin = $@"
             <LgSwitchGearset Job=""{leve.Classes}"" />
         <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level}"">
@@ -97,7 +103,7 @@ namespace LeveGen
             <If Condition=""not IsOnMap({turnin.MapId})"">
                 <GetTo ZoneId=""{turnin.MapId}"" XYZ=""{turninloc}"" />
             </If>
-            <ExTurnInGuildLeve npcId=""{turnin.NpcId}"" npcLocation=""{turninloc}"" />
+            <ExTurnInGuildLeve npcId=""{turnin.NpcId}"" npcLocation=""{turninloc}"" {LeveTag} />
         </While>";
 
             if (generateLisbeth)
