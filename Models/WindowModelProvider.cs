@@ -19,8 +19,6 @@ using ff14bot.NeoProfiles;
 
 namespace LeveGen.Models
 {
-
-    
     public class WindowModelProvider : INotifyPropertyChanged
     {
         private LeveDatabase _database;
@@ -81,7 +79,7 @@ namespace LeveGen.Models
 
                     using (var stream = File.OpenWrite(file))
                     {
-                        LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, GenerateLisbeth, stream);
+                        LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, TurninHqOnly, GenerateLisbeth, stream);
                     }
 
                     try
@@ -116,7 +114,7 @@ namespace LeveGen.Models
                     {
                         using (var savestrem = sr.OpenFile())
                         {
-                            LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, GenerateLisbeth, savestrem);
+                            LeveGenerator.Generate(_database, CurrentOrder, ContinueOnLevel, TurninHqOnly, GenerateLisbeth, savestrem);
                         }
                     }
 
@@ -187,7 +185,7 @@ namespace LeveGen.Models
 
         private bool FilterMatches(string term)
         {
-            return (term.IndexOf(Search, StringComparison.OrdinalIgnoreCase) >= 0);
+            return term.IndexOf(Search, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         private bool Filter(Leve i)
@@ -240,6 +238,18 @@ namespace LeveGen.Models
             set
             {
                 _search = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _TurnInHqOnly;
+
+        public bool TurninHqOnly
+        {
+            get { return _TurnInHqOnly; }
+            set
+            {
+                _TurnInHqOnly = value;
                 OnPropertyChanged();
             }
         }

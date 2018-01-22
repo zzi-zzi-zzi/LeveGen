@@ -10,8 +10,8 @@
 
 namespace LeveGen.Localization {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace LeveGen.Localization {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Localization {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Localization() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace LeveGen.Localization {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace LeveGen.Localization {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
@@ -68,7 +68,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("AddBtn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Alchemist.
         /// </summary>
@@ -77,7 +77,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("ALC", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Armorer.
         /// </summary>
@@ -86,7 +86,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("ARM", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blacksmith.
         /// </summary>
@@ -95,7 +95,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("BSM", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Class.
         /// </summary>
@@ -104,7 +104,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("Class", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
@@ -113,7 +113,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("ClearBtn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Carpenter.
         /// </summary>
@@ -122,7 +122,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("CRP", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Culinarian.
         /// </summary>
@@ -131,7 +131,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("CUL", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Exp Reward.
         /// </summary>
@@ -140,7 +140,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("ExpReward", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Goldsmith.
         /// </summary>
@@ -149,7 +149,25 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("GSM", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to HqOnly.
+        /// </summary>
+        public static string HqOnly {
+            get {
+                return ResourceManager.GetString("HqOnly", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to HqOnlyDesc.
+        /// </summary>
+        public static string HqOnlyDesc {
+            get {
+                return ResourceManager.GetString("HqOnlyDesc", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Items.
         /// </summary>
@@ -158,7 +176,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("Items", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
@@ -167,7 +185,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("Level", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to LeveName.
         /// </summary>
@@ -176,7 +194,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("LeveName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Leatherworker.
         /// </summary>
@@ -185,7 +203,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("LTW", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Generate Lisbeth Orders.
         /// </summary>
@@ -194,7 +212,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("MakeLizbeth", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Create Lisbeth orders for the selected leves. If Optimize EXP is checked, it will create orders based on how many HQ items are required to get to the next tier of Leves, otherwise it will create orders to complete 5 leves..
         /// </summary>
@@ -203,7 +221,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("MakeLizbethDesc", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to # of Repeats.
         /// </summary>
@@ -212,7 +230,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("NumRepeat", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Optimize Exp.
         /// </summary>
@@ -221,7 +239,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("OptimizeExp", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Only do the leve for it&apos;s level range. This is to maximize EXP.
         /// </summary>
@@ -230,7 +248,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("OptimizeExpDesc", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to # of Items.
         /// </summary>
@@ -239,7 +257,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("qtyItem", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
@@ -248,7 +266,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("RemoveBtn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -257,7 +275,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("SaveBtn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Saves the profile if you want to use it later.
         /// </summary>
@@ -266,7 +284,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("SaveTooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Search:.
         /// </summary>
@@ -275,7 +293,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("Search", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
@@ -284,7 +302,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("StartBtn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tradecraft.
         /// </summary>
@@ -293,7 +311,7 @@ namespace LeveGen.Localization {
                 return ResourceManager.GetString("Tradecraft", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Weaver.
         /// </summary>

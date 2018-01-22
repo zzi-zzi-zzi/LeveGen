@@ -11,22 +11,27 @@ namespace LeveGen
 {
     public class LeveGenerator
     {
-        private static string Header = @"<?xml version=""1.0"" encoding=""utf-8""?>"+ "\n" +
+        private const string Header =
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
             "<Profile>\n"+
             "\t<Name>Levequests</Name>\n"+
             "\t<KillRadius>50</KillRadius>\n"+
             "\t<Order>";
 
-        private static string Footer = "\t</Order>\n</Profile>";
+        private const string Footer =
+            "\t</Order>\n" +
+             "</Profile>";
 
         /// <summary>
-        /// generate our XML file
+        /// Generate our XML file
         /// </summary>
         /// <param name="db"></param>
         /// <param name="currentOrder"></param>
         /// <param name="ContinueOnLevel"></param>
+        /// <param name="HqOnly"></param>
+        /// <param name="GenerateLisbeth"></param>
         /// <param name="savestrem"></param>
-        public static void Generate(LeveDatabase db, ObservableCollection<Leve> currentOrder, bool ContinueOnLevel, bool GenerateLisbeth, Stream savestrem)
+        public static void Generate(LeveDatabase db, ObservableCollection<Leve> currentOrder, bool ContinueOnLevel, bool HqOnly, bool GenerateLisbeth, Stream savestrem)
         {
             using (var sw = new StreamWriter(savestrem))
             {
@@ -34,7 +39,7 @@ namespace LeveGen
 
                 foreach (var x in currentOrder.OrderBy(i => i.Level))
                 {
-                    sw.WriteLine(WriteOrder(db, x, ContinueOnLevel, GenerateLisbeth));
+                    sw.WriteLine(WriteOrder(db, x, ContinueOnLevel, HqOnly, GenerateLisbeth));
                 }
 
                 sw.WriteLine(Footer);
@@ -71,12 +76,14 @@ namespace LeveGen
         <Lisbeth Json=""[{WriteLisbethSubOrder(leve, numLeves)}]"" />";
         }
 
-        private static string WriteOrder(LeveDatabase db, Leve leve, bool continueOnLevel, bool generateLisbeth)
+        private static string WriteOrder(LeveDatabase db, Leve leve, bool continueOnLevel, bool hqOnly, bool generateLisbeth)
         {
             var pickup = db.Npcs.First(i => i.NpcId == leve.PickUpNpc);
             var pickuploc = $"{formatFloat(pickup.Pos.X)},{formatFloat(pickup.Pos.Y)},{formatFloat(pickup.Pos.Z)}";
             var turnin = db.Npcs.First(i => i.NpcId == leve.TurnInNpc);
             var turninloc = $"{formatFloat(turnin.Pos.X)},{formatFloat(turnin.Pos.Y)},{formatFloat(turnin.Pos.Z)}";
+            var itemcount = hqOnly ? "HqItemCount" : "ItemCount";
+            var hqonlyattrib = hqOnly ? @"HqOnly=""true""" : string.Empty;
 
             ClassJobType leveClass;
             ClassJobType.TryParse(leve.Classes, out leveClass);
@@ -92,18 +99,18 @@ namespace LeveGen
 #else
             var LeveTag = @"";
 #endif
-            
+
             var outputTurnin = $@"
-            <LgSwitchGearset Job=""{leve.Classes}"" />
-        <While condition=""ItemCount({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level}"">
+        <LgSwitchGearset Job=""{leve.Classes}"" />
+        <While Condition=""ExBuddy.Windows.GuildLeve.Allowances &gt; 0 and {itemcount}({leve.ItemId}) &gt; {leve.NumItems - 1}{col} and Core.Me.Levels[ClassJobType.{leveClass}] &gt;= {leve.Level}"">
             <If Condition=""not IsOnMap({pickup.MapId})"">
                 <GetTo ZoneId=""{pickup.MapId}"" XYZ=""{pickuploc}"" />
             </If>
-            <ExPickupGuildLeve leveIds=""{leve.LeveId}"" leveType=""{Localization.Localization.Tradecraft}"" npcId=""{pickup.NpcId}"" npcLocation=""{pickuploc}"" Timeout=""5"" />
+            <ExPickupGuildLeve LeveIds=""{leve.LeveId}"" LeveType=""{Localization.Localization.Tradecraft}"" NpcId=""{pickup.NpcId}"" NpcLocation=""{pickuploc}"" Timeout=""5"" />
             <If Condition=""not IsOnMap({turnin.MapId})"">
                 <GetTo ZoneId=""{turnin.MapId}"" XYZ=""{turninloc}"" />
             </If>
-            <ExTurnInGuildLeve npcId=""{turnin.NpcId}"" npcLocation=""{turninloc}"" {LeveTag} />
+            <ExTurnInGuildLeve NpcId=""{turnin.NpcId}"" NpcLocation=""{turninloc}"" {hqonlyattrib} {LeveTag} />
         </While>";
 
             if (generateLisbeth)
