@@ -76,11 +76,11 @@ namespace SaintCoinach.Cmd.Commands {
                     // This program will only export Shadowbringers levequests. See history for older version.
                     var pickupNpc = 1027847;
                     var pickupNpcMap = 819;
-                    var pickupNpcLocation = new Vector3(-76.34094f, 20.04979f, -110.9789f);
+                    var pickupNpcLocation = new Vector3(-73.38852f,19.99979f,-110.7495f);
 
                     var turninNpc = 1027848;
                     var turninNpcMap = 819;
-                    var turninNpcLocation = new Vector3(-76.18829f, 20.04979f, -113.8782f);
+                    var turninNpcLocation = new Vector3(-72.5716f, 19.99979f, -113.66f);
 
                     var item = ir.Items.First().Item;
 
