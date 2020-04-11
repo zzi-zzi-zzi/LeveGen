@@ -28,7 +28,7 @@ namespace LeveGen
     public class LeveGen : BotPlugin
     {
 #if RB_CN
-        public static string PluginName = "Rb LeveGen";
+        public static string PluginName = "生产职业理符任务生成";
 #else
         public static string PluginName = "Rb LeveGen";
 #endif
